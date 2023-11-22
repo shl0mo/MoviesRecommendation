@@ -14,22 +14,25 @@ if (favoritesArray.length > 3) {
 		moviesRecommendationsArray.push(movie);
 	})
 }
-let i = 0;
+
 console.log('moviesRecommendationArray: ' + moviesRecommendationsArray);
 export function Recommendations () {
 	return (
 		<>
 			<h2 style={h2Style}>Filmes Recomendados</h2>
-			{moviesRecommendationsArray.map((movie) => {
-				if (i !== moviesRecommendationsArray.length - 1) {
-						<RecommendationsReq movieId={movie.movieId}/>
+			{moviesRecommendationsArray.map((movie, index) => {
+				if (index !== 2) {
+				return (
+					<RecommendationsReq movieId={movie.movieId}/>
+					
+				)
 				} else {
 					return (
 						<RecommendationsReq return={true} movieId={movie.movieId}/>
 					)
 				}
-				i++;
-			})}		
+				
+			})}
 		</>
 	)
 }

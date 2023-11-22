@@ -34,9 +34,7 @@ export function RecommendationsReq (props: RecommendationsReqProps) {
 					randomIndex = Math.floor(Math.random() * 22);
 				}
 				indexes.push(randomIndex);
-				console.log(randomIndex);
 				const movie = moviesObj.results[randomIndex];
-				console.log(movieId);
 				if (movie && movie.poster_path) {
 					moviesArray.push([
         	                                <MoviePosterBox key={movie.id}>
@@ -56,9 +54,9 @@ export function RecommendationsReq (props: RecommendationsReqProps) {
 	if (props.return) {
 		return (
 			<CategoryContainer>
-                	        <MovieContainer>
-                        	        {moviesArray}
-	                        </MovieContainer>
+               	        	<MovieContainer>
+                       	        	{moviesArray}
+		                       </MovieContainer>
         	        </CategoryContainer>
 		)
 	}
