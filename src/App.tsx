@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
 
 import "./App.css";
 import {
@@ -6,13 +7,16 @@ import {
 	Navbar
 } from "./components";
 import Routes from "./routes/routes";
+import store from "./store";
 
 function App() {
 	return (
-		<Background>
-			<Navbar/>
-			<Routes/>
-		</Background>
+		<Provider store={store}>
+			<Background>
+				<Navbar/>
+				<Routes/>
+			</Background>
+		</Provider>
 	)
 }
 

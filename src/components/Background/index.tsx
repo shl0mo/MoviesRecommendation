@@ -11,5 +11,6 @@ const backgroundStyle = {
 	backgroundColor: "rgba(0,0,0,0.95)",
 	width: "100vw",
 	height: "100wh",
-	margin: 0,
+	paddingBottom: '40px',
+	margin: 0
 }

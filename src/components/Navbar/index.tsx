@@ -1,5 +1,5 @@
 export function Navbar () {
-	const links = [['/', 'Home'], ['/favoritos', 'Favoritos'], ['/recomendacoes', 'Recomendações']];
+	const links = [['/', 'Home'], ['/favorites', 'Favoritos'], ['/recommendations', 'Recomendações']];
 
 	return (
 		<nav style={navStyle}>
