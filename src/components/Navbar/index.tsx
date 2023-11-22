@@ -1,5 +1,5 @@
 export function Navbar () {
-	const links = [['/', 'Home'], ['/Favoritos', 'Favoritos']];
+	const links = [['/', 'Home'], ['/Favoritos', 'Favoritos'], ['/', 'Recomendações']];
 
 	return (
 		<nav style={navStyle}>
@@ -33,7 +33,7 @@ const ulStyle = {
 	flexDirection: 'row',
 	justifyContent: 'space-around',
 	margin: 0,
-	width: '16%',
+	width: '30%',
 	listStyleType: 'none',
 }
 
