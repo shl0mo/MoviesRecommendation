@@ -6,3 +6,4 @@ export * from './MoviePosterImage';
 export * from './SectionTitle';
 export * from './Button';
 export * from './Navbar';
+export * from './Footer';

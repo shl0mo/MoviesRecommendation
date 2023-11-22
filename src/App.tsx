@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import "./App.css";
 import {
 	Background,
-	Navbar
+	Navbar,
+	Footer
 } from "./components";
 import Routes from "./routes/routes";
 import store from "./store";
@@ -16,6 +17,7 @@ function App() {
 				<Navbar/>
 				<Routes/>
 			</Background>
+			<Footer/>
 		</Provider>
 	)
 }
