@@ -8,7 +8,7 @@ export function Background ({ children }) {
 
 const backgroundStyle = {
 	color: "#FFF",
-	backgroundColor: "#000",
+	backgroundColor: "rgba(0,0,0,0.95)",
 	width: "100vw",
 	height: "100wh",
 	margin: 0,
