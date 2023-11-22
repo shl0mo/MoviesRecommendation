@@ -4,9 +4,10 @@ import store from '../../store';
 
 const favoritesArray = JSON.parse(store.getState().favoritesArray);
 const moviesRecommendationsArray = [];
-if (favoritesArray.length > 3) {
-	for (let i = 0; i < 3; i++) {
-		const i = Math.floor(Math.random() * 3);
+const favoriteMoviesQuantity = 5;
+if (favoritesArray.length > favoriteMoviesQuantity) {
+	for (let i = 0; i < favoriteMoviesQuantity; i++) {
+		const i = Math.floor(Math.random() * favoritesArray.length);
 		moviesRecommendationsArray.push(favoritesArray[i]);
 	}
 } else {
@@ -15,7 +16,6 @@ if (favoritesArray.length > 3) {
 	})
 }
 
-console.log('moviesRecommendationArray: ' + moviesRecommendationsArray);
 export function Recommendations () {
 	return (
 		<>

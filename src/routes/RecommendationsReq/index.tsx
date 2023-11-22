@@ -7,7 +7,7 @@ import {
         MoviePosterBox,
         MoviePosterImage,
         SectionTitle
-} from "../../components";
+} from '../../components';
 import { GetMovies } from '../../categories/GetMovies';
 import { GetRecommendations } from '../../services/movie.service';
 import { GetMovieDetails } from '../../services/movie.details.service';
@@ -21,26 +21,42 @@ interface RecommendationsReqProps {
 
 
 const moviesArray = [];
+const moviesIds = [];
+const moviesQuantity = 10;
 const favoritesArray = JSON.parse(store.getState().favoritesArray);
-const indexes = [];
+if (localStorage.getItem('randomIndexes') === null) {
+	localStorage.setItem('randomIndexes', JSON.stringify([]));
+}
 export function RecommendationsReq (props: RecommendationsReqProps) {
 	const navigate = useNavigate();
-	const [recommendedMovies, setRecommendedMovies] = useState([]);	
+	const [recommendedMovies, setRecommendedMovies] = useState([]);
+	const [randomIndexes, setRandomIndexes] = useState([]);
+
 	async function GetRecommendation (movieId: number): TheMovieDB {
 		GetRecommendations(movieId).then((moviesObj) => {
-			for (let i = 0; i < 3; i++) {
-				let randomIndex = Math.floor(Math.random() * 22);
-				while (indexes.includes(randomIndex) || randomIndex >= favoritesArray.length) {
-					randomIndex = Math.floor(Math.random() * 22);
+			let randomIndex = Math.floor(Math.random() * moviesObj.results.length);
+			for (let i = 0; i < moviesQuantity; i++) {
+				let randomIndexes = JSON.parse(localStorage.getItem('randomIndexes'));
+				if (!randomIndexes.includes(randomIndex)) {
+					randomIndexes = [...randomIndexes, randomIndex];
+					localStorage.setItem(
+						'randomIndexes',
+						JSON.stringify(randomIndexes)
+					);
 				}
-				indexes.push(randomIndex);
-				const movie = moviesObj.results[randomIndex];
+			}
+			const randomIndexes = JSON.parse(localStorage.getItem('randomIndexes'));
+			for (let i = 0; i < moviesQuantity; i++) {
+				const movie = moviesObj.results[randomIndexes[i]];
 				if (movie && movie.poster_path) {
-					moviesArray.push([
-        	                                <MoviePosterBox key={movie.id}>
-                	                                <MoviePosterImage key_={`img-movie-${movie.id}`}src={`${import.meta.env.VITE_APP_BASE_URL_IMAGEM}/${movie.poster_path}`} />
-                        	                </MoviePosterBox>
-					])
+					if (!moviesIds.includes(movie.id)) {
+						moviesIds.push(movie.id);
+						moviesArray.push([
+        		                                <MoviePosterBox key={movie.id}>
+                		                                <MoviePosterImage key_={`img-movie-${movie.id}`}src={`${import.meta.env.VITE_APP_BASE_URL_IMAGEM}/${movie.poster_path}`} />
+                        		                </MoviePosterBox>
+						])
+					}
 				}
 			}
 			setRecommendedMovies(moviesArray);
