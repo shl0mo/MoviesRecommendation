@@ -33,8 +33,8 @@ const ulStyle = {
 	flexDirection: 'row',
 	justifyContent: 'space-around',
 	margin: 0,
-	width: '30%',
-	listStyleType: 'none',
+	width: '450px',
+	listStyleType: 'none'
 }
 
 const liStyle = {
