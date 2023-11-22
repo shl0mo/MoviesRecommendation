@@ -18,7 +18,7 @@ const Slice = createSlice({
 				if (movieInfo.movieId === movieId) alreadyAdded = true;
 			}
 			if (alreadyAdded) {
-				alert('O filme já consta na lista de favoritos');
+				document.querySelector('#favorite-button').remove();
 				return;
 			} 
 			favoritesArray = [
@@ -28,6 +28,19 @@ const Slice = createSlice({
 		       	localStorage.setItem(favoritesArrayName, JSON.stringify(favoritesArray));
 			state.favoritesArray = localStorage.getItem(favoritesArrayName);
 			alert('Filme adicionado na lista de favoritos com sucesso');
+		},
+		removeFavoriteButton (state, { payload }) {
+			const favoritesArray = JSON.parse(state.favoritesArray);
+			console.log(favoritesArray);
+			const movieId = payload.movieId;
+			console.log(movieId);
+			for (const favoriteInfo of favoritesArray) {
+                		if (favoriteInfo.movieId === movieId) {
+	 	                       const favoriteButton =  document.querySelector('#favorite-button');
+        		                if (document.contains(favoriteButton)) favoriteButton.remove();
+                		        break;
+	                	}
+        		}
 		}
 	}
 })
@@ -38,5 +51,5 @@ function setLocalStorageFavoritesArray() {
 		localStorage.setItem(favoritesArrayName, JSON.stringify([]));
 }
 
-export const { addFavorite } = Slice.actions;
+export const { addFavorite, removeFavoriteButton } = Slice.actions;
 export default Slice.reducer;

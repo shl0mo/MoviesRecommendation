@@ -1,6 +1,6 @@
-export function Button ({ children, label, color, backgroundColor, onClick }) {
+export function Button ({ children, id, label, color, backgroundColor, onClick }) {
 	return (
-		<button  style={{...buttonStyle, color: color, backgroundColor: backgroundColor }} onClick={onClick}>
+		<button id={id}  style={{...buttonStyle, color: color, backgroundColor: backgroundColor }} onClick={onClick}>
 			<div>
 				{ children }
 			</div>
