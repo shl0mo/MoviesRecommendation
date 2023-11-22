@@ -1,5 +1,56 @@
 import store from '../../store';
 
 export function Favorites () {
-	console.log(store.getState());
+	const favoritesArray = JSON.parse(store.getState().favoritesArray);
+	console.log(favoritesArray);
+	if (favoritesArray.length === 0) {
+		return (
+			<h1>Nenhum filme foi favoritado</h1>
+		)
+	} else {
+		return (
+			<div style={tableContainerStyle}>
+				<h2>Lista de Favoritos</h2>
+				<table style={tableStyle}>
+					<tbody>
+						{favoritesArray.map((favoriteInfo, index) => {
+							return (
+								<tr>
+									<td>
+										<input type={'hidden'} value={favoriteInfo.movieId} readOnly/>
+									</td>
+									<td>
+										<img src={favoriteInfo.posterSrc} style={posterImageStyle}/>
+									</td>
+									<td>
+										<h3>{favoriteInfo.movieTitle}</h3>
+									</td>
+								</tr>
+							)
+						})}
+					</tbody>
+				</table>
+			</div>
+		)
+	}
+}
+
+const tableContainerStyle = {
+	display: 'flex',
+	flexDirection: 'column',
+	width: '100%',
+	alignItems: 'center',
+	marginTop: '50px'
+}
+
+const tableStyle = {
+	marginTop: '5px'
+}
+
+const posterImageStyle = {
+	width: '200px',
+	height: '100px',
+	borderRadius: '5px',
+	marginRight: '15px',
+	marginBottom: '10px'
 }
