@@ -1,18 +1,31 @@
 import { RecommendationsReq } from '../RecommendationsReq';
 import store from '../../store';
 
+
+const favoritesArray = JSON.parse(store.getState().favoritesArray);
+const moviesRecommendationsArray = [];
+if (favoritesArray.length > 3) {
+	for (let i = 0; i < 3; i++) {
+		const i = Math.floor(Math.random() * 3);
+		moviesRecommendationsArray.push(favoritesArray[i]);
+	}
+} else {
+	favoritesArray.map((movie) => {
+		moviesRecommendationsArray.push(movie);
+	})
+}
+let i = 0;
+console.log('moviesRecommendationArray: ' + moviesRecommendationsArray);
 export function Recommendations () {
-	const favoritesArray = JSON.parse(store.getState().favoritesArray);
-	let i = 0;
 	return (
 		<>
 			<h2 style={h2Style}>Filmes Recomendados</h2>
-			{favoritesArray.map((movie) => {
-				if (i !== favoritesArray.length - 1) {
-					<RecommendationsReq movieId={movie.movieId}/>
+			{moviesRecommendationsArray.map((movie) => {
+				if (i !== moviesRecommendationsArray.length - 1) {
+						<RecommendationsReq movieId={movie.movieId}/>
 				} else {
 					return (
-						<RecommendationsReq movieId={movie.movieId}/>
+						<RecommendationsReq return={true} movieId={movie.movieId}/>
 					)
 				}
 				i++;
