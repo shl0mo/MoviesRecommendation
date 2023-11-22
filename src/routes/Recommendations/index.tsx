@@ -6,16 +6,23 @@ export function Recommendations () {
 	let i = 0;
 	return (
 		<>
+			<h2 style={h2Style}>Filmes Recomendados</h2>
 			{favoritesArray.map((movie) => {
-				console.log(typeof movie.movieId);
-				// <RecommendationsReq movieId={movie.movieId}/>
-				// if (i === favoritesArray.length - 1) {
+				if (i !== favoritesArray.length - 1) {
+					<RecommendationsReq movieId={movie.movieId}/>
+				} else {
 					return (
 						<RecommendationsReq movieId={movie.movieId}/>
 					)
-				// }
-				// i++;
+				}
+				i++;
 			})}		
 		</>
-	)	
+	)
+}
+
+const h2Style = {
+	marginTop: '40px',
+	marginLeft: '40px',
+	fontSize: '40px'
 }

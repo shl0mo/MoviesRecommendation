@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
         CategoryContainer,
@@ -9,6 +10,7 @@ import {
 } from "../../components";
 import { GetMovies } from '../../categories/GetMovies';
 import { GetRecommendations } from '../../services/movie.service';
+import { GetMovieDetails } from '../../services/movie.details.service';
 import store from '../../store';
 
 
@@ -19,19 +21,15 @@ interface RecommendationsReqProps {
 
 const moviesArray = [];
 export function RecommendationsReq (props: RecommendationsReqProps) {
+	const navigate = useNavigate();
 	const [recommendedMovies, setRecommendedMovies] = useState([]);
-	
-	async function MovieDetails(movieId: number) {
-                const movieDetail = await GetMovieDetails(movieId);
-                navigate("/details", { state: { movieDetail } });
-        }
-	
+		
 	async function GetRecommendation (movieId: number): TheMovieDB {
 		GetRecommendations(movieId).then((moviesObj) => {
 			moviesObj.results.map((movie) => {
 				moviesArray.push([
                                         <MoviePosterBox key={movie.id}>
-                                                <MoviePosterImage src={`${import.meta.env.VITE_APP_BASE_URL_IMAGEM}/${movie.poster_path}`} onClick={() => MovieDetails(props.movieId)} />
+                                                <MoviePosterImage key_={`img-movie-${movie.id}`}src={`${import.meta.env.VITE_APP_BASE_URL_IMAGEM}/${movie.poster_path}`} />
                                         </MoviePosterBox>
 				])
 			})

@@ -15,15 +15,15 @@ export function Favorites () {
 					<tbody>
 						{favoritesArray.map((favoriteInfo, index) => {
 							return (
-								<tr>
-									<td>
-										<input type={'hidden'} value={favoriteInfo.movieId} readOnly/>
+								<tr key={`tr-favorites-${index}`}>
+									<td key={`td-id-favorites-${index}`}>
+										<input key={`input-id-favorites-${index}`} type={'hidden'} value={favoriteInfo.movieId} readOnly/>
 									</td>
-									<td>
-										<img src={favoriteInfo.posterSrc} style={posterImageStyle}/>
+									<td key={`td-img-favorites-${index}`}>
+										<img key={`img-favorites-${index}`} src={favoriteInfo.posterSrc} style={posterImageStyle}/>
 									</td>
-									<td>
-										<h3>{favoriteInfo.movieTitle}</h3>
+									<td key={`td-title-favorites-${index}`}>
+										<h3 key={`title-favorites-${index}`}>{favoriteInfo.movieTitle}</h3>
 									</td>
 								</tr>
 							)

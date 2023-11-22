@@ -27,6 +27,8 @@ const Slice = createSlice({
 			];
 		       	localStorage.setItem(favoritesArrayName, JSON.stringify(favoritesArray));
 			state.favoritesArray = localStorage.getItem(favoritesArrayName);
+	 	        const favoriteButton =  document.querySelector('#favorite-button');
+        		if (document.contains(favoriteButton)) favoriteButton.remove();
 			alert('Filme adicionado na lista de favoritos com sucesso');
 		},
 		removeFavoriteButton (state, { payload }) {
