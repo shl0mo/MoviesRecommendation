@@ -19,6 +19,9 @@ export function Navbar () {
 }
 
 const navStyle = {
+	position: 'absolute',
+	top: 0,
+	width: '100vw',
 	display: 'flex',
 	height: '60px',
 	justifyContent: 'center',

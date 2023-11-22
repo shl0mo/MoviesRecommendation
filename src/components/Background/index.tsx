@@ -12,5 +12,5 @@ const backgroundStyle = {
 	width: "100vw",
 	height: "100wh",
 	paddingBottom: '40px',
-	margin: 0
+	marginTop: '75px'
 }

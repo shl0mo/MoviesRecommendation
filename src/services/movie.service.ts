@@ -54,3 +54,11 @@ export const GetActionMovies = (): Promise<TheMovieDB> => GetMoviesByGenre(28);
 export const GetAdventureMovies = (): Promise<TheMovieDB> => GetMoviesByGenre(12);
 
 export const GetRomanceMovies = (): Promise<TheMovieDB> => GetMoviesByGenre(10749);
+
+export async function GetRecommendations (movieId: number): Promise<TheMovieDB> {
+	const endpoint = `movie/${movieId}/recommendations`;
+	const result = await instance.http.get(
+		`${endpoint}?api_key=${apiKey}`
+	);
+	return result.data;
+}
